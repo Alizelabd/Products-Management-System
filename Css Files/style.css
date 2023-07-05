@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+}
+
+:root {
+    --main-color: #2196F3;
+    --dark-body: #212529;
+    --border-radius: 5px;
+}
+
+body {
+    background-color: var(--dark-body);
+    color: #fff;
+}
+.btn-color {
+    background-color: var(--main-color);
+    border-radius: var(--border-radius);
+    color: #fff;
+    font-weight: 400;
+    border: 1px solid var(--main-color) !important;
+}
+
+input:focus {
+    outline: none;
+}
+input[type='number']::-webkit-inner-spin-button{
+appearance: none;
+}
+.curd .head h3 {
+    color: var(--main-color);
+    margin-top: 10px;
+}
+
+.curd .head p {
+    background-color: var(--main-color);
+    padding: 6px 12px;
+    border-radius: var(--border-radius);
+}
+
+.modal-content {
+    background-color: #008eff29;
+    backdrop-filter: blur(10px)
+}
+.btn-close{
+    background-color: #fd0f0f !important;
+}
+.my-input {
+    padding: 10px 12px;
+    color: var(--main-color);
+    border-radius: var(--border-radius);
+    border: none;
+}
+
+.body .inputs #title {
+    width: 100%;
+}
+
+.body .inputs .price {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.body .inputs .price input {
+    width: calc(90% / 2);
+    margin: 5px;
+}
+
+.body .inputs .total {
+    color: #fff;
+    margin: 0px auto 15px;
+    padding: 10px 12px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: var(--border-radius);
+    width: fit-content;
+    background-color: red;
+}
+.body .inputs .total::before{
+    content: "Total:";
+}
+.body .inputs #search{
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+}
+.body .inputs #search:focus{
+    outline: 2px solid var(--main-color);
+}
+#delete-all{
+    display: block;
+    width: 100%;
+    margin: 10px auto;
+}

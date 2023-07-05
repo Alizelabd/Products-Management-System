@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Products Management System">
+    <title>Products Management System</title>
+    <!-- Font Awesome Library -->
+    <link rel="stylesheet" href="./Css Files/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;800;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap Files -->
+    <link rel="stylesheet" href="./Css Files/bootstrap.css">
+    <!-- Main File CSS -->
+    <link rel="stylesheet" href="./Css Files/style.css">
+</head>
+
+<body>
+    <div class="curd">
+        <div class="head text-center">
+            <div class="container">
+                <h3 class="text-capitalize fw-bold">نظام إدارة المنتجات</h3>
+                <p class="fw-semibold">Products Management System</p>
+            </div>
+        </div>
+        <div class="body">
+            <div class="container text-center">
+                <button onclick="switchMood()" type="button" class="btn btn-color" data-bs-toggle="modal" data-bs-target="#createproudct"
+                    data-bs-whatever="@mdo">Create Product</button>
+                <button type="button" class="btn btn-color" data-bs-toggle="modal" data-bs-target="#btn_serach"
+                    data-bs-whatever="@fat">Search</button>
+                <!-- Button Delete modal -->
+                <button id="delete-all" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal">
+                    Delete All
+                    <span id="count-array"></span>
+                </button>
+                <div class="modal fade" id="createproudct" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="title-box modal-title fs-5" id="exampleModalLabel">Create New Product</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="inputs">
+                                    <input class="my-input" type="text" placeholder="Title" id="title">
+                                    <div class="price">
+                                        <input onkeyup="getTotalPrice()" class="my-input" type="number"
+                                            placeholder="price" id="price">
+                                        <input onkeyup="getTotalPrice()" class="my-input" type="number"
+                                            placeholder="Taxes" id="taxes">
+                                        <input onkeyup="getTotalPrice()" class="my-input" type="number"
+                                            placeholder="Ads" id="ads">
+                                        <input onkeyup="getTotalPrice()" class="my-input" type="number"
+                                            placeholder="Discount" id="discount">
+                                    </div>
+                                    <div class="total text-capitalize"></div>
+                                    <input class="my-input" type="number" placeholder="Count" id="count">
+                                    <input class="my-input" type="text" placeholder="Category" id="category">
+                                </div>
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <button type="button" class="btn bg-danger fw-semibold"
+                                    data-bs-dismiss="modal">Close</button>
+                                <button type="button" id="create" class="btn bg-warning fw-semibold">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="btn_serach" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <!-- Full screen modal -->
+                    <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Search Products</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="inputs">
+                                    <input onkeyup="searchData(this.value)" class="my-input" placeholder="Search By Title" type="search" name="search"
+                                        id="search">
+                                    <button onclick="getSearchMood(this.id)" id="search-title" class="btn btn-light" type="submit">Search By Title</button>
+                                    <button onclick="getSearchMood(this.id)" id="search-category" class="btn btn-light" type="submit">Search By Category</button>
+                                </div>
+                                <div class="outputs mt-3">
+                                    <table class="table table-dark table-striped text-center">
+                                        <thead>
+                                            <tr class="text-capitalize">
+                                                <th>id</th>
+                                                <th>title</th>
+                                                <th>price</th>
+                                                <th>taxes</th>
+                                                <th>ads</th>
+                                                <th>discount</th>
+                                                <th>total</th>
+                                                <th>category</th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="serach-table">
+                                            <!-- <tr>
+                                                <td>1</td>
+                                                <td>appel</td>
+                                                <td>250</td>
+                                                <td>25</td>
+                                                <td>50</td>
+                                                <td>5</td>
+                                                <td>500</td>
+                                                <td>phone</td>
+                                                <td><button class="text-capitalize text-bg-warning">update</button></td>
+                                                <td><button class="text-capitalize text-bg-danger">delete</button></td>
+                                            </tr> -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">warning</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure to delete all products?
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                    <button onclick="deleteAllProducts()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="outputs mt-3">
+        <table class="table table-dark table-striped text-center">
+            <thead>
+                <tr class="text-capitalize">
+                    <th>id</th>
+                    <th>title</th>
+                    <th>price</th>
+                    <th>taxes</th>
+                    <th>ads</th>
+                    <th>discount</th>
+                    <th>total</th>
+                    <th>category</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="body-table">
+                <!-- <tr>
+                    <td>1</td>
+                    <td>appel</td>
+                    <td>250</td>
+                    <td>25</td>
+                    <td>50</td>
+                    <td>5</td>
+                    <td>500</td>
+                    <td>phone</td>
+                    <td><button class="text-capitalize text-bg-warning">update</button></td>
+                    <td><button class="text-capitalize text-bg-danger">delete</button></td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+    <!-- Bootstrap JS Files -->
+    <script src="./JS Files/bootstrap.js"></script>
+    <script src="./JS Files/main.js"></script>
+</body>
+
+</html>
