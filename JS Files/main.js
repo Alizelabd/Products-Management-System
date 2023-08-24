@@ -34,7 +34,7 @@ let myArrayFor_objMyDateProudct = [];
 if (localStorage.product != null) {
     myArrayFor_objMyDateProudct = JSON.parse(localStorage.getItem('product'));
 }
-create$Btn.onclick = function () {
+create$Btn.onclick = () =>  {
     const objMyDateProudct = {
         title: title_Input.value.toLowerCase(),
         price: price_Input.value,
@@ -45,16 +45,16 @@ create$Btn.onclick = function () {
         category: category_Input.value.toLowerCase(),
         total: total$Div.innerHTML
     }
-    if (title_Input.value != "" && price_Input.value != "" && category_Input.value != "" && objMyDateProudct.count <= 100) {
+    if (title_Input.value != "" && price_Input.value != "" && category_Input.value != "") {
         // create$Btn.setAttribute("data-bs-dismiss", "modal");
         if (moodData === "create") {
-            if (objMyDateProudct.count > 1) {
-                for (let i = 0; i < objMyDateProudct.count; i++) {
+            // if (objMyDateProudct.count > 1) {
+            //     for (let i = 0; i < objMyDateProudct.count; i++) {
                     myArrayFor_objMyDateProudct.push(objMyDateProudct);
-                }
-            } else {
-                myArrayFor_objMyDateProudct.push(objMyDateProudct);
-            }
+            //     }
+            // } else {
+            //     myArrayFor_objMyDateProudct.push(objMyDateProudct);
+            // }
         } else {
             myArrayFor_objMyDateProudct[indexArrayForUpdate] = objMyDateProudct;
         }
@@ -96,6 +96,7 @@ function readData() {
         <td>${myArrayFor_objMyDateProudct[i].discount}</td>
         <td>${myArrayFor_objMyDateProudct[i].total}</td>
         <td>${myArrayFor_objMyDateProudct[i].category}</td>
+        <td>${myArrayFor_objMyDateProudct[i].count}</td>
         <td><button onclick="updateData(${i})" class="text-capitalize text-bg-warning" data-bs-toggle="modal" data-bs-target="#createproudct"
         data-bs-whatever="@mdo">update</button></td>
         <td><button onclick="deleteData(${i})" class="text-capitalize text-bg-danger">delete</button></td>
@@ -132,7 +133,8 @@ function updateData(e) {
     ads_Input.value = myArrayFor_objMyDateProudct[e].ads;
     discount_Input.value = myArrayFor_objMyDateProudct[e].discount;
     category_Input.value = myArrayFor_objMyDateProudct[e].category;
-    count_Input.style.display = "none";
+    count_Input.value = myArrayFor_objMyDateProudct[e].count;
+    // count_Input.style.display = "none";
     getTotalPrice();
     indexArrayForUpdate = e;
     moodData = "update";
@@ -140,60 +142,59 @@ function updateData(e) {
     title$Box.innerHTML = "Update Data Product";
 }
 // Search Function
-let searchMood = "title";
-function getSearchMood(id) {
-    if (id === "search-title") {
-        searchMood = "title";
-    } else {
-        searchMood = "category";
-    }
-    search_Input.focus();
-    search_Input.value = "";
-    search_Input.placeholder = 'Search By ' + searchMood;
-    readData();
-}
-function searchData(value) {
-    let table = "";
-    for (let i = 0; i < myArrayFor_objMyDateProudct.length; i++) {
-        if (searchMood == "title") {
-            if (myArrayFor_objMyDateProudct[i].title.includes(value.toLowerCase())) {
-                table +=
-                    `<tr>
-            <td>${i + 1}</td>
-            <td>${myArrayFor_objMyDateProudct[i].title}</td>
-            <td>${myArrayFor_objMyDateProudct[i].price}</td>
-            <td>${myArrayFor_objMyDateProudct[i].taxes}</td>
-            <td>${myArrayFor_objMyDateProudct[i].ads}</td>
-            <td>${myArrayFor_objMyDateProudct[i].discount}</td>
-            <td>${myArrayFor_objMyDateProudct[i].total}</td>
-            <td>${myArrayFor_objMyDateProudct[i].category}</td>
-            <td><button onclick="updateData(${i})" class="text-capitalize text-bg-warning" data-bs-toggle="modal" data-bs-target="#createproudct"
-            data-bs-whatever="@mdo">update</button></td>
-            <td><button onclick="deleteData(${i})" class="text-capitalize text-bg-danger">delete</button></td>
-            </tr>`;
-            }
-        } else {
-            if (myArrayFor_objMyDateProudct[i].category.includes(value.toLowerCase())) {
-                // console.log(" from category");
-                table +=
-                    `<tr>
-            <td>${i + 1}</td>
-            <td>${myArrayFor_objMyDateProudct[i].title}</td>
-            <td>${myArrayFor_objMyDateProudct[i].price}</td>
-            <td>${myArrayFor_objMyDateProudct[i].taxes}</td>
-            <td>${myArrayFor_objMyDateProudct[i].ads}</td>
-            <td>${myArrayFor_objMyDateProudct[i].discount}</td>
-            <td>${myArrayFor_objMyDateProudct[i].total}</td>
-            <td>${myArrayFor_objMyDateProudct[i].category}</td>
-            <td><button onclick="updateData(${i})" class="text-capitalize text-bg-warning" data-bs-toggle="modal" data-bs-target="#createproudct"
-            data-bs-whatever="@mdo">update</button></td>
-            <td><button onclick="deleteData(${i})" class="text-capitalize text-bg-danger">delete</button></td>
-            </tr>`;
-            }
-        }
-
-    }
-    document.getElementById('serach-table').innerHTML = table;
-
-}
+// let searchMood = "title";
+// function getSearchMood(id) {
+//     if (id === "search-title") {
+//         searchMood = "title";
+//     } else {
+//         searchMood = "category";
+//     }
+//     search_Input.focus();
+//     search_Input.value = "";
+//     search_Input.placeholder = 'Search By ' + searchMood;
+//     readData();
+// }
+// function searchData(value) {
+//     let table = "";
+//     for (let i = 0; i < myArrayFor_objMyDateProudct.length; i++) {
+//         if (searchMood == "title") {
+//             if (myArrayFor_objMyDateProudct[i].title.includes(value.toLowerCase())) {
+//                 table +=
+//                     `<tr>
+//             <td>${i + 1}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].title}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].price}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].taxes}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].ads}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].discount}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].total}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].category}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].count}</td>
+//             <td><button onclick="updateData(${i})" class="text-capitalize text-bg-warning" data-bs-toggle="modal" data-bs-target="#createproudct"
+//             data-bs-whatever="@mdo">update</button></td>
+//             <td><button onclick="deleteData(${i})" class="text-capitalize text-bg-danger">delete</button></td>
+//             </tr>`;
+//             }
+//         } else {
+//             if (myArrayFor_objMyDateProudct[i].category.includes(value.toLowerCase())) {
+//                 table +=
+//                     `<tr>
+//             <td>${i + 1}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].title}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].price}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].taxes}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].ads}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].discount}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].total}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].category}</td>
+//             <td>${myArrayFor_objMyDateProudct[i].count}</td>
+//             <td><button onclick="updateData(${i})" class="text-capitalize text-bg-warning" data-bs-toggle="modal" data-bs-target="#createproudct"
+//             data-bs-whatever="@mdo">update</button></td>
+//             <td><button onclick="deleteData(${i})" class="text-capitalize text-bg-danger">delete</button></td>
+//             </tr>`;
+//             }
+//         }
+//     }
+//     document.getElementById('serach-table').innerHTML = table;
+// }
 // created by Aleiz Bahar@
