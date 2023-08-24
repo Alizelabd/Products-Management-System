@@ -4,7 +4,6 @@
     -moz-box-sizing: border-box;
     font-family: 'Cairo', sans-serif;
 }
-
 :root {
     --main-color: #2196F3;
     --dark-body: #212529;
@@ -22,7 +21,9 @@ body {
     font-weight: 400;
     border: 1px solid var(--main-color) !important;
 }
-
+ul,li{
+    list-style-type: none;
+}
 input:focus {
     outline: none;
 }
@@ -95,3 +96,13 @@ appearance: none;
     width: 100%;
     margin: 10px auto;
 }
+/* START STORE*/
+nav ul{
+    margin: 0;
+    padding: 5px 20px;
+}
+nav ul a{
+    color: #fff;
+    text-decoration: none;
+}
+/* END STORE*/
