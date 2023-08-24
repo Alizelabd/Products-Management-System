@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta name="description" content="Products Management System">
+    <title>Products Management System</title>
+    <!-- Font Awesome Library -->
+    <link rel="stylesheet" href="./Css Files/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;800;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap Files -->
+    <link rel="stylesheet" href="./Css Files/bootstrap.css">
+    <!-- Main File CSS -->
+    <link rel="stylesheet" href="./Css Files/style.css">
+</head>
+
+<body>
+    <nav class="bg-primary">
+        <ul>
+            <li>
+                <a href="index.html"><i class="fa-solid fa-gear"></i>system</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="search-div border-bottom p-2">
+        <div class="container">
+            <input onkeyup="searchProudcts(this.value)" class="w-100 input-group-text" placeholder="Type to serach" type="search" name="search" id="">
+        </div>
+    </div>
+    <div class="proudcts-body pt-2">
+        <div class="container">
+            <div class="row data row-cols-1 row-cols-md-3 g-4">
+                <!-- <div class="col">
+                    <div class="card text-bg-primary text-center h-100">
+                        <img src="./img/products.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div class="head d-flex justify-content-between align-items-center">
+                                <span class="title">name proudct</span>
+                                <div class="category">category: <span>test-name</span></div>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <div class="price">price: <span>500</span>$</div>
+                            <div class="count">count: <span>50</span></div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- JS Files -->
+    <script src="./JS Files/bootstrap.js"></script>
+    <script src="./JS Files/main.js"></script>
+    <script src="./JS Files/store.js"></script>
+</body>
+
+</html>
