@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
     <meta name="description" content="Products Management System">
     <title>Products Management System</title>
     <!-- Font Awesome Library -->
@@ -19,6 +20,13 @@
 </head>
 
 <body>
+    <nav class="bg-primary">
+        <ul>
+            <li>
+                <a href="store.html"><i class="fa-solid fa-bars"></i>home</a>
+            </li>
+        </ul>
+    </nav>
     <div class="curd">
         <div class="head text-center">
             <div class="container">
@@ -28,12 +36,13 @@
         </div>
         <div class="body">
             <div class="container text-center">
-                <button onclick="switchMood()" type="button" class="btn btn-color" data-bs-toggle="modal" data-bs-target="#createproudct"
-                    data-bs-whatever="@mdo">Create Product</button>
+                <button onclick="switchMood()" type="button" class="btn btn-color" data-bs-toggle="modal"
+                    data-bs-target="#createproudct" data-bs-whatever="@mdo">Create Product</button>
                 <button type="button" class="btn btn-color" data-bs-toggle="modal" data-bs-target="#btn_serach"
                     data-bs-whatever="@fat">Search</button>
                 <!-- Button Delete modal -->
-                <button id="delete-all" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal">
+                <button id="delete-all" type="button" class="btn btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#delete-modal">
                     Delete All
                     <span id="count-array"></span>
                 </button>
@@ -84,10 +93,12 @@
                             </div>
                             <div class="modal-body">
                                 <div class="inputs">
-                                    <input onkeyup="searchData(this.value)" class="my-input" placeholder="Search By Title" type="search" name="search"
-                                        id="search">
-                                    <button onclick="getSearchMood(this.id)" id="search-title" class="btn btn-light" type="submit">Search By Title</button>
-                                    <button onclick="getSearchMood(this.id)" id="search-category" class="btn btn-light" type="submit">Search By Category</button>
+                                    <input onkeyup="searchData(this.value)" class="my-input"
+                                        placeholder="Search By Title" type="search" name="search" id="search">
+                                    <button onclick="getSearchMood(this.id)" id="search-title" class="btn btn-light"
+                                        type="submit">Search By Title</button>
+                                    <button onclick="getSearchMood(this.id)" id="search-category" class="btn btn-light"
+                                        type="submit">Search By Category</button>
                                 </div>
                                 <div class="outputs mt-3">
                                     <table class="table table-dark table-striped text-center">
@@ -101,6 +112,7 @@
                                                 <th>discount</th>
                                                 <th>total</th>
                                                 <th>category</th>
+                                                <th>count</th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>
@@ -142,7 +154,8 @@
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                    <button onclick="deleteAllProducts()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete All</button>
+                    <button onclick="deleteAllProducts()" type="button" class="btn btn-danger"
+                        data-bs-dismiss="modal">Delete All</button>
                 </div>
             </div>
         </div>
@@ -159,6 +172,7 @@
                     <th>discount</th>
                     <th>total</th>
                     <th>category</th>
+                    <th>count</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -182,6 +196,7 @@
     <!-- Bootstrap JS Files -->
     <script src="./JS Files/bootstrap.js"></script>
     <script src="./JS Files/main.js"></script>
+    <script src="./JS Files/search.js"></script>
 </body>
 
 </html>
